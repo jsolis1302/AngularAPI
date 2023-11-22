@@ -10,22 +10,27 @@ export class AddEditDepComponent implements OnInit {
   constructor(private service:SharedService){}
 
   @Input() dep:any;
-  DepartmentId:string=""
+  DepartmentId:string="";
   DepartmentName:string="";
+  DepartmentCode:string="";
 
   ngOnInit(): void {
     this.DepartmentId = this.dep.DepartmentId;
     this.DepartmentName = this.dep.DepartmentName;
+    this.DepartmentCode = this.dep.DepartmentCode;
   }
 
   addDeparmtnet(){
     var val = {
       DepartmentId:this.DepartmentId,
-      DepartmentName:this.DepartmentName
+      DepartmentName:this.DepartmentName,
+      DepartmentCode:this.DepartmentCode
     };
 
     this.service.addDepartment(val).subscribe(res=>{
-      alert(res.toString())
+      //alert(res.toString())
+      console.log(res)
+      this.service.msgAlert('success','Succes !!',res.toString())
     });
 
   }
@@ -34,7 +39,8 @@ export class AddEditDepComponent implements OnInit {
 
     var val = {
       DepartmentId:this.DepartmentId,
-      DepartmentName:this.DepartmentName
+      DepartmentName:this.DepartmentName,
+      DepartmentCode:this.DepartmentCode
     };
 
     this.service.updateDepartment(val).subscribe(res=>{
