@@ -1,6 +1,7 @@
 import { Injectable } from '@angular/core';
 import { HttpClient } from "@angular/common/http";
 import { Observable } from 'rxjs';
+import Swal from 'sweetalert2'
 
 @Injectable({
   providedIn: 'root'
@@ -49,5 +50,13 @@ export class SharedService {
 
   getAllDepartmentnames():Observable<any[]>{
     return this.http.get<any[]>(this.APIUrl + '/department/')
+  }
+
+  msgAlert = (icon:any,title:string,text:string)=>{
+    Swal.fire({
+      icon,
+      title,
+      text
+    })
   }
 }
